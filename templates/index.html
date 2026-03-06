@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Business Builder Magazine</title>
+  <style>
+
+.subscribe-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 0.9rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.subscribe-form button {
+  grid-column: 1 / -1;
+  justify-self: center;
+  min-width: 220px;
+  padding: 1.1rem 12.2rem;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.cta .btn-primary {
+  padding: 1.1rem 12.2rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.subscribe-form button,
+.cta .btn-primary {
+  margin-bottom: 1rem;
+}
+
+.plan-select {
+  width: 100%;
+  padding: 0.95rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
+  outline: none;
+  box-shadow: var(--shadow);
+}
+
+.plan-select:focus {
+  border-color: rgba(255,255,255,0.3);
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.06);
+}
+
+.plan-select option {
+  background: #111;
+  color: #fff;
+}
+
+#community {
+  padding: 5rem 0;
+}
+#stories {
+  position: relative;
+  background-image: url("/static/stories-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 5rem 0;
+}
+#stories::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+}
+
+#stories .container {
+  position: relative;
+  z-index: 2;
+}
+    :root {
+      --bg: #050505;
+      --text: #f1f1f1;
+      --muted: #a3a3a3;
+      --silver: #d9d9d9;
+      --accent: #bdbdbd;
+      --line: rgba(255, 255, 255, 0.08);
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.55);
+      --glow: 0 0 30px rgba(255, 255, 255, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.07), transparent 26%),
+        radial-gradient(circle at 85% 15%, rgba(255,255,255,0.04), transparent 18%),
+        linear-gradient(135deg, #000000 0%, #0b0b0b 42%, #111111 100%);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.02) 25%, transparent 40%),
+        linear-gradient(300deg, transparent 0%, rgba(255,255,255,0.02) 20%, transparent 38%);
+      mix-blend-mode: screen;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(5, 5, 5, 0.72);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .brand-mark {
+      letter-spacing: 0.35rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .brand-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--silver);
+      text-shadow: 0 0 12px rgba(255,255,255,0.08);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.25s ease, text-shadow 0.25s ease;
+    }
+
+    nav a:hover {
+      color: var(--silver);
+      text-shadow: 0 0 14px rgba(255,255,255,0.12);
+    }
+
+    section {
+      padding: 2rem 0 4rem;
+    }
+
+    .hero {
+      padding: 6.5rem 0 4rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 0.45rem 0.85rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      color: var(--accent);
+      background: rgba(255,255,255,0.03);
+      box-shadow: var(--glow);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18rem;
+      font-size: 0.76rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.7rem, 5vw, 5.2rem);
+      line-height: 0.98;
+      margin-bottom: 1.25rem;
+      max-width: 10ch;
+      color: #ffffff;
+      text-shadow: 0 6px 30px rgba(255,255,255,0.08);
+    }
+
+    .hero p {
+      max-width: 62ch;
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.95rem 1.35rem;
+      border-radius: 999px;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.14);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(180deg, #d8d8d8 0%, #9d9d9d 100%);
+      color: #0a0a0a;
+      font-weight: 700;
+    }
+
+    .btn-secondary {
+      color: var(--silver);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero-card,
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02));
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-card h3,
+    .section-title {
+      color: var(--silver);
+    }
+
+    .hero-card p,
+    .card p {
+      color: var(--muted);
+    }
+
+    .hero-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-image img {
+      display: block;
+      width: 100%;
+      max-width: 340px;
+      border-radius: 14px;
+      box-shadow:
+        0 25px 60px rgba(0,0,0,0.6),
+        0 0 30px rgba(255,255,255,0.05);
+      transform: rotate(-2deg);
+      transition: transform 0.4s ease;
+    }
+
+    .hero-image img:hover {
+      transform: rotate(0deg) scale(1.03);
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 60ch;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .feature-tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      color: var(--accent);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.3rem 0.65rem;
+      border-radius: 999px;
+      margin-bottom: 0.9rem;
+    }
+
+    .story-card h3 {
+      margin-bottom: 0.75rem;
+    }
+
+    .story-card p {
+      margin-bottom: 1rem;
+    }
+
+    .subscribe-section {
+      padding: 2rem 0 4rem;
+    }
+
+    .subscribe-card {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .subscribe-card p {
+      max-width: 640px;
+      margin: 1rem auto 1.5rem;
+      color: var(--muted);
+    }
+
+    .subscribe-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 0.9rem;
+      align-items: center;
+      margin-top: 1rem;
+    }
+
+    .subscribe-form input {
+      width: 100%;
+      padding: 0.95rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      outline: none;
+      box-shadow: var(--shadow);
+    }
+
+    .subscribe-form input::placeholder {
+      color: var(--muted);
+    }
+
+    .subscribe-form input:focus {
+      border-color: rgba(255,255,255,0.3);
+      box-shadow: 0 0 0 3px rgba(255,255,255,0.06);
+    }
+
+    .subscribe-note {
+      margin-top: 0.9rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .cta {
+      text-align: center;
+      padding: 4rem 1rem 5rem;
+    }
+
+    .cta .card {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 1.4rem 0 2.4rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align: center;
+      
+    }
+
+    .fade-to-white {
+      height: 10px;
+      width: 100%;
+      background: linear-gradient(
+        to bottom,
+        #050505 0%,
+        rgba(5, 5, 5, 0.7) 35%,
+        rgba(255, 255, 255, 0.75) 72%,
+        #ffffff 100%
+      );
+    }
+
+    .fade-to-dark {
+      height: 0px;
+      width: 100%;
+      background: linear-gradient(
+        to bottom,
+        #ffffff 0%,
+        rgba(255,255,255,0.75) 28%,
+        rgba(5,5,5,0.7) 65%,
+        #050505 100%
+      );
+    }
+
+    .mission-section {
+      background: #ffffff;
+      color: #000000;
+      padding: 4rem 0;
+    }
+
+    .mission-section .section-title,
+    .mission-section h3 {
+      color: #000000;
+    }
+
+    .mission-section .section-head p,
+    .mission-section p {
+      color: #333333;
+    }
+
+    .mission-section .card {
+      background: #ffffff;
+      border: 0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      backdrop-filter: none;
+      overflow: hidden;
+    }
+
+    .mission-section .feature-tag {
+      color: #555555;
+      border: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .mission-image {
+      display: block;
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-bottom: 1rem;
+      background: #e9e9e9;
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid,
+      .grid-3,
+      .subscribe-form {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 4.5rem;
+      }
+
+      .hero h1 {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div>
+        <div class="brand-mark">Local. Real. Distinct.</div>
+        <div class="brand-name">Business Builder Magazine</div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#mission">Mission</a></li>
+          <li><a href="#stories">Stories</a></li>
+          <li><a href="#community">Community</a></li>
+          <li><a href="#subscribe">Subscribe</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Independent business journalism</span>
+          <h1>Where local business stories feel human again.</h1>
+          <p>
+            Business Builder Magazine shines a light on unique local businesses,
+            the people behind them, and the real stories that make communities stronger.
+          </p>
+          <div class="buttons">
+            <a class="btn btn-primary" href="#subscribe">Subscribe Free</a>
+            <a class="btn btn-secondary" href="#mission">Explore Stories</a>
+          </div>
+        </div>
+
+        <aside class="hero-card hero-image">
+          <img src="/static/cover.png" alt="Business Builder Magazine Cover" />
+        </aside>
+      </div>
+    </section>
+
+    <div class="fade-to-white"></div>
+
+    <section id="mission" class="mission-section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Our Mission</h2>
+          
+              To give meaningful visibility to the businesses that make a place feel alive,
+              and to tell their stories with honesty, depth, and respect.
+              <strong>
+                We profile founders, family-run shops, neighborhood icons, creative brands,
+                and emerging ventures that shape the local economy in authentic ways.
+              </strong>
+           
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <img class="mission-image" src="/static/authentic.jpg" alt="Authentic business story" />
+            
+            <h3>Real stories over promotion</h3>
+            <p>
+              We focus on people, purpose, setbacks, wins, and the values behind the brand.
+            </p>
+          </div>
+
+          <div class="card">
+            <img class="mission-image" src="/static/local.jpg" alt="Local community business" />
+           
+            <h3>Built for community connection</h3>
+            <p>
+              Every feature helps readers discover the businesses shaping their neighborhoods.
+            </p>
+          </div>
+
+          <div class="card">
+            <img class="mission-image" src="/static/design.jpg" alt="Editorial magazine design" />
+        
+            <h3>Designed with a bold editorial feel</h3>
+            <p>
+              A stealthy metallic visual style gives the magazine a refined, modern identity.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="fade-to-dark"></div>
+
+    <section id="stories">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Story Angles We Feature</h2>
+            
+              From legacy storefronts to quietly brilliant startups, we tell the stories that deserve attention.
+            
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <article class="card story-card">
+            <span class="feature-tag">Founder stories</span>
+            <h3>The journey behind the brand</h3>
+            <p>Who started it, why they stayed with it, and what the community means to them.</p>
+          </article>
+
+          <article class="card story-card">
+            <span class="feature-tag">Neighborhood voices</span>
+            <h3>Businesses that shape identity</h3>
+            <p>Places that turn blocks into destinations and customers into regulars.</p>
+          </article>
+
+          <article class="card story-card">
+            <span class="feature-tag">Honest growth</span>
+            <h3>Beyond surface-level success</h3>
+            <p>The real lessons, pivots, and moments that made a business worth remembering.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="community">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Why It Matters</h2>
+           
+              Communities thrive when local businesses are seen, understood, and supported.
+              We create that bridge through thoughtful editorial storytelling.
+            
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>For readers</h3>
+            <p>Discover remarkable businesses with genuine local roots and a story worth knowing.</p>
+          </div>
+
+          <div class="card">
+            <h3>For businesses</h3>
+            <p>Be represented in a way that feels credible, cinematic, and true to who you are.</p>
+          </div>
+
+          <div class="card">
+            <h3>For the city</h3>
+            <p>Celebrate the people and places that give your community texture, ambition, and soul.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<section id="subscribe" class="subscribe-section">
+  <div class="container">
+    <div class="card subscribe-card">
+      <span class="eyebrow">ACCESS CONTENT FREE</span>
+      <h2 class="section-title">Subscribe today, it's free.</h2>
+      <p>
+        Enter your name, email, and ZIP code to get Business Builder
+        Magazine sent directly to your inbox.
+      </p>
+
+      <form class="subscribe-form" id="subscribe-form">
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Your name"
+          aria-label="Your name"
+          required
+        />
+
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Your email address"
+          aria-label="Your email address"
+          required
+        />
+
+        <input
+          type="text"
+          id="zip"
+          name="zip"
+          placeholder="ZIP code"
+          aria-label="ZIP code"
+          required
+        />
+
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
+
+      
+    </div>
+  </div>
+</section>
+
+    <section class="cta" id="contact">
+      <div class="container">
+        <div class="card">
+          <h2 class="section-title">Ready to spotlight your business?</h2>
+          <p style="margin: 1rem 0 2.5rem; color: var(--muted);">
+            Share your story with us to see if it's a good fit with our publication.
+          </p>
+          <a class="btn btn-primary" href="mailto:riley@businessbuildermagazine.com">Get In Touch</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Business Builder Magazine. All Rights Reserved.
+    </div>
+  </footer>
+
+<script>
+  const form = document.getElementById("subscribe-form");
+  const messageBox = document.getElementById("subscribe-message");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const payload = {
+      name: document.getElementById("name").value.trim(),
+      email: document.getElementById("email").value.trim(),
+      zip: document.getElementById("zip").value.trim()
+    };
+
+    try {
+      const res = await fetch("/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        messageBox.textContent = "Thanks — you’ve been added.";
+        form.reset();
+      } else {
+        messageBox.textContent = data.error || "Something went wrong.";
+      }
+    } catch (err) {
+      console.error(err);
+      messageBox.textContent = "Something went wrong.";
+    }
+  });
+</script>
+
+</body>
+</html>
