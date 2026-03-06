@@ -705,40 +705,44 @@
   </footer>
 
 <script>
-  const form = document.getElementById("subscribe-form");
-  const messageBox = document.getElementById("subscribe-message");
+const form = document.getElementById("subscribe-form");
+const button = form.querySelector("button");
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-    const payload = {
-      name: document.getElementById("name").value.trim(),
-      email: document.getElementById("email").value.trim(),
-      zip: document.getElementById("zip").value.trim()
-    };
+  button.innerText = "Submitting...";
+  button.disabled = true;
 
-    try {
-      const res = await fetch("/subscribe", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(payload)
-      });
+  const payload = {
+    name: document.getElementById("name").value.trim(),
+    email: document.getElementById("email").value.trim(),
+    zip: document.getElementById("zip").value.trim()
+  };
 
-      const data = await res.json();
+  try {
+    const res = await fetch("/subscribe", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
 
-      if (res.ok) {
-        messageBox.textContent = "Thanks — you’ve been added.";
-        form.reset();
-      } else {
-        messageBox.textContent = data.error || "Something went wrong.";
-      }
-    } catch (err) {
-      console.error(err);
-      messageBox.textContent = "Something went wrong.";
+    if (res.ok) {
+      button.innerText = "Success ✓";
+      form.reset();
+    } else {
+      button.innerText = "Try Again";
+      button.disabled = false;
     }
-  });
+
+  } catch (err) {
+    console.error(err);
+    button.innerText = "Error";
+    button.disabled = false;
+  }
+});
 </script>
 
 </body>
